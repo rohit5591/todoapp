@@ -1,0 +1,53 @@
+1. Search by query
+bashcurl -X POST \
+  "https://testing8BMEILSJ3E-dsn.algolia.net/1/indexes/bluerewards_dev/query" \
+  -H "X-Algolia-Application-Id: testing8BMEILSJ3E" \
+  -H "X-Algolia-API-Key: $ALGOLIA_SEARCH_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "ca",
+    "page": 0,
+    "hitsPerPage": 10,
+    "filters": "locale:en",
+    "attributesToRetrieve": ["title","url","lastModified","body","contentType","tags","publishDate","locale"]
+  }'
+2. Next page
+bashcurl -X POST \
+  "https://testing8BMEILSJ3E-dsn.algolia.net/1/indexes/bluerewards_dev/query" \
+  -H "X-Algolia-Application-Id: testing8BMEILSJ3E" \
+  -H "X-Algolia-API-Key: $ALGOLIA_SEARCH_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "ca",
+    "page": 1,
+    "hitsPerPage": 10,
+    "filters": "locale:en",
+    "attributesToRetrieve": ["title","url","lastModified","body","contentType","tags","publishDate","locale"]
+  }'
+3. Last page
+Compute from the first response: lastPage = nbPages - 1 (e.g. 929 hits at 10/page → nbPages: 93 → last page is 92).
+bashcurl -X POST \
+  "https://testing8BMEILSJ3E-dsn.algolia.net/1/indexes/bluerewards_dev/query" \
+  -H "X-Algolia-Application-Id: testing8BMEILSJ3E" \
+  -H "X-Algolia-API-Key: $ALGOLIA_SEARCH_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "ca",
+    "page": 92,
+    "hitsPerPage": 10,
+    "filters": "locale:en",
+    "attributesToRetrieve": ["title","url","lastModified","body","contentType","tags","publishDate","locale"]
+  }'
+4. First page / navigation back to start
+bashcurl -X POST \
+  "https://testing8BMEILSJ3E-dsn.algolia.net/1/indexes/bluerewards_dev/query" \
+  -H "X-Algolia-Application-Id: testing8BMEILSJ3E" \
+  -H "X-Algolia-API-Key: $ALGOLIA_SEARCH_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "ca",
+    "page": 0,
+    "hitsPerPage": 10,
+    "filters": "locale:en",
+    "attributesToRetrieve": ["title","url","lastModified","body","contentType","tags","publishDate","locale"]
+  }'
