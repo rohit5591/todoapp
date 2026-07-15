@@ -51,3 +51,16 @@ bashcurl -X POST \
     "filters": "locale:en",
     "attributesToRetrieve": ["title","url","lastModified","body","contentType","tags","publishDate","locale"]
   }'
+
+
+# 1. Search by query
+curl 'https://web.bff.bluerewards.ca/dombff-contents/services/bluerewards/v1/search?q=eGift&start=0&rows=10&filters=locale%3Aen&fl=title%2Curl%2ClastModified%2Cbody%2CcontentType%2Ctags%2CpublishDate%2Clocale'
+
+# 2. Next page
+curl 'https://web.bff.bluerewards.ca/dombff-contents/services/bluerewards/v1/search?q=eGift&start=10&rows=10&filters=locale%3Aen&externalResults=1&fl=title%2Curl%2ClastModified%2Cbody%2CcontentType%2Ctags%2CpublishDate%2Clocale'
+
+# 3. Last page
+curl 'https://web.bff.bluerewards.ca/dombff-contents/services/bluerewards/v1/search?q=eGift&start=920&rows=10&filters=locale%3Aen&externalResults=1&fl=title%2Curl%2ClastModified%2Cbody%2CcontentType%2Ctags%2CpublishDate%2Clocale'
+
+# 4. Back to first page
+curl 'https://web.bff.bluerewards.ca/dombff-contents/services/bluerewards/v1/search?q=eGift&start=0&rows=10&filters=locale%3Aen&fl=title%2Curl%2ClastModified%2Cbody%2CcontentType%2Ctags%2CpublishDate%2Clocale'
